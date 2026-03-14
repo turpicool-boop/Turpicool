@@ -2,8 +2,8 @@ name: Actualizar Precios Diario
 
 on:
   schedule:
-    - cron: '0 12 * * *'   # Cada día a las 12:00 UTC (8:00 AM Venezuela)
-  workflow_dispatch:         # También permite correrlo manualmente desde GitHub
+    - cron: '0 12 * * *'
+  workflow_dispatch:
 
 jobs:
   actualizar:
@@ -22,12 +22,32 @@ jobs:
         run: pip install pandas openpyxl requests
 
       - name: Descargar Excel y generar precios.json
-        run: python excel_a_precios.py
+        run: |
+          python3 - <<'EOF'
+          import requests, pandas as pd, json, io
+
+          DRIVE_FILE_ID = "1RlYJMsZ0uMpEhrOlUG2Y9EF88ZHzR3Sk"
+          url = f"https://docs.google.com/spreadsheets/d/{DRIVE_FILE_ID}/export?format=xlsx"
+          response = requests.get(url, timeout=30)
+          response.raise_for_status()
+
+          df = pd.read_excel(io.BytesIO(response.content), sheet_name="Lista de Precios", header=10)
+          df.columns = ['_', 'codigo', 'producto', 'cantidad', 'precio_ref', 'precio_bs']
+          df = df[df['codigo'].notna() & (df['codigo'] != 'Código') & (df['codigo'] != 'TOTAL')]
+          df['precio_ref'] = pd.to_numeric(df['precio_ref'], errors='coerce').round(2)
+
+          precios = {str(r['codigo']).strip(): r['precio_ref'] for _, r in df.iterrows() if pd.notna(r['precio_ref'])}
+
+          with open('precios.json', 'w') as f:
+              json.dump(precios, f, indent=2)
+
+          print(f"✅ {len(precios)} productos guardados en precios.json")
+          EOF
 
       - name: Subir precios.json al repositorio
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add precios.json
-          git diff --cached --quiet || git commit -m "Precios actualizados automáticamente $(date +'%Y-%m-%d')"
+          git diff --cached --quiet || git commit -m "Precios actualizados $(date +'%Y-%m-%d')"
           git push
