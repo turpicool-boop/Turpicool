@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TURPICOOL — Repuestos HVAC & Electrodomésticos | Especialistas</title>
+<link rel="icon" type="image/png" href="images/imagen_001.png">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ice:#E8F4FD;--sky:#5BB8E8;--royal:#2A7EC8;--navy:#0D2B52;
+  --deep:#071830;--orange:#E8720C;--orange2:#FF8C1A;--gold:#C8922A;
+  --card:#0f2140;--border:rgba(91,184,232,0.18);
+  --text:#E8F4FD;--muted:rgba(232,244,253,0.55);--green:#25D366;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Barlow',sans-serif;background:var(--deep);color:var(--text);min-height:100vh;}
+
+
+/* TOPBAR */
+.topbar{background:rgba(7,24,48,0.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:66px;gap:12px;}
+.logo-wrap{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.logo-img{width:46px;height:46px;object-fit:contain;flex-shrink:0;}
+.logo-txt{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:4px;background:linear-gradient(135deg,var(--sky),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.logo-sub{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);display:block;margin-top:-3px;}
+.nav-links{display:flex;gap:6px;align-items:center;}
+.nav-btn{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:13px;letter-spacing:2px;text-transform:uppercase;background:none;border:none;color:rgba(232,244,253,0.75);cursor:pointer;padding:8px 14px;border-radius:8px;transition:all .2s;}
+.nav-btn:hover{color:var(--sky);background:rgba(91,184,232,0.1);}
+.topbar-socials{display:flex;gap:5px;align-items:center;}
+.tsoc{width:32px;height:32px;border-radius:8px;border:1px solid rgba(91,184,232,0.3);background:#0d2040;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all .2s;flex-shrink:0;}
+.tsoc:hover{border-color:var(--sky);background:#1a3a6b;transform:translateY(-1px);}
+.tsoc svg{width:16px;height:16px;display:block;}
+
+/* CART BTN WITH SHAKE */
+.cart-btn{position:relative;background:rgba(232,114,12,0.15);border:1px solid rgba(232,114,12,0.4);color:var(--orange);padding:8px 16px;border-radius:8px;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:1px;transition:all .2s;display:flex;align-items:center;gap:6px;}
+.cart-btn:hover{background:rgba(232,114,12,0.25);}
+.cart-btn.shake{animation:shake .4s ease;}
+@keyframes shake{0%,100%{transform:translateX(0);}20%{transform:translateX(-4px) rotate(-2deg);}40%{transform:translateX(4px) rotate(2deg);}60%{transform:translateX(-3px);}80%{transform:translateX(3px);}}
+.cart-count{background:var(--orange);color:#fff;border-radius:50%;width:18px;height:18px;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;}
+
+/* ADMIN BANNER */
+.admin-banner{display:none;background:linear-gradient(90deg,rgba(232,114,12,0.15),rgba(91,184,232,0.1));border-bottom:1px solid rgba(232,114,12,0.3);padding:10px 28px;align-items:center;gap:12px;flex-wrap:wrap;}
+.admin-banner.show{display:flex;}
+.admin-dot{width:8px;height:8px;border-radius:50%;background:var(--orange);animation:pulse 1.5s infinite;flex-shrink:0;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.admin-banner-txt{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--orange);}
+.logout-btn{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:12px;letter-spacing:2px;text-transform:uppercase;background:none;border:1px solid rgba(232,114,12,0.4);color:var(--orange);padding:5px 14px;border-radius:8px;cursor:pointer;transition:all .2s;}
+.logout-btn:hover{background:rgba(232,114,12,0.15);}
+
+/* HERO */
+.hero{background:linear-gradient(160deg,#0d2b52 0%,#071830 60%,#0a1020 100%);padding:64px 28px 56px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'❄';position:absolute;font-size:400px;top:-100px;left:-80px;opacity:0.03;color:var(--sky);animation:spin 80s linear infinite;}
+.hero::after{content:'❄';position:absolute;font-size:300px;bottom:-80px;right:-60px;opacity:0.03;color:var(--sky);animation:spin 60s linear infinite reverse;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.hero-logo-big{width:160px;height:auto;object-fit:contain;margin:0 auto 20px;display:block;position:relative;z-index:1;filter:drop-shadow(0 0 20px rgba(91,184,232,0.3));}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,96px);letter-spacing:6px;line-height:1;background:linear-gradient(180deg,#fff 0%,var(--sky) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:relative;z-index:1;}
+.hero-sub{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(13px,2vw,19px);letter-spacing:5px;text-transform:uppercase;color:var(--orange);margin-top:8px;position:relative;z-index:1;}
+.hero-desc{font-weight:300;font-size:15px;color:var(--muted);margin:18px auto 0;max-width:520px;line-height:1.7;position:relative;z-index:1;}
+.stats{display:flex;gap:40px;justify-content:center;flex-wrap:wrap;margin-top:36px;position:relative;z-index:1;}
+.stat{text-align:center;}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:2px;color:var(--sky);}
+.stat-l{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);}
+
+/* FILTROS */
+.filters{display:flex;gap:10px;flex-wrap:wrap;padding:24px 28px;border-bottom:1px solid var(--border);background:rgba(7,24,48,0.6);align-items:center;}
+.filter-label{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:rgba(232,244,253,0.7);margin-right:6px;}
+.filter-chip{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:13px;letter-spacing:1px;text-transform:uppercase;border:1px solid rgba(91,184,232,0.3);background:rgba(13,32,64,0.8);color:rgba(232,244,253,0.75);cursor:pointer;padding:7px 18px;border-radius:20px;transition:all .2s;white-space:nowrap;}
+.filter-chip:hover{border-color:var(--sky);color:var(--sky);background:rgba(91,184,232,0.1);}
+.filter-chip.on{background:var(--sky);border-color:var(--sky);color:var(--navy);}
+.sort-wrap{margin-left:auto;display:flex;gap:8px;align-items:center;}
+.sort-select{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;background:rgba(13,32,64,0.8);border:1px solid rgba(91,184,232,0.3);color:rgba(232,244,253,0.75);padding:7px 14px;border-radius:20px;outline:none;cursor:pointer;}
+.sort-select option{background:#0f2140;}
+.search-input{font-family:'Barlow',sans-serif;font-size:14px;background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--text);padding:8px 18px;border-radius:20px;outline:none;transition:border-color .2s;width:200px;}
+.search-input::placeholder{color:var(--muted);}
+.search-input:focus{border-color:var(--sky);}
+
+/* CATALOG */
+.catalog-wrap{padding:36px 28px;}
+.catalog-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px;flex-wrap:wrap;gap:12px;}
+.catalog-title{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:3px;color:var(--sky);}
+.count-badge{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:12px;letter-spacing:2px;text-transform:uppercase;background:rgba(91,184,232,0.12);border:1px solid var(--border);color:var(--sky);padding:5px 14px;border-radius:12px;}
+.add-btn{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;background:var(--orange);border:none;color:#fff;padding:10px 22px;border-radius:10px;cursor:pointer;transition:all .2s;display:none;align-items:center;gap:8px;}
+.add-btn:hover{background:var(--orange2);transform:translateY(-1px);}
+.add-btn.visible{display:flex;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px;}
+
+/* CARD */
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:transform .25s,box-shadow .25s,border-color .25s;position:relative;}
+.card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,0.4);border-color:rgba(91,184,232,0.35);}
+.card-img{width:100%;height:180px;background:linear-gradient(135deg,#0d2444,#162d55);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.card-img img{width:100%;height:100%;object-fit:cover;}
+.card-img .placeholder{font-size:48px;opacity:0.3;}
+.cat-badge{position:absolute;top:10px;left:10px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:4px 10px;border-radius:8px;}
+.cat-hvac{background:rgba(91,184,232,0.85);color:var(--navy);}
+.cat-appliance{background:rgba(232,114,12,0.85);color:#fff;}
+.cat-other{background:rgba(200,146,42,0.85);color:#fff;}
+.product-badges{position:absolute;top:10px;right:10px;display:flex;flex-direction:column;gap:4px;}
+.badge-new{background:#27ae60;color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;border-radius:6px;}
+.badge-sale{background:#e74c3c;color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;border-radius:6px;}
+.card-body{padding:18px;}
+.card-sku{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.card-subcat{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--sky);opacity:0.7;margin-bottom:6px;}
+.card-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:0.5px;text-transform:uppercase;color:var(--text);margin-bottom:6px;line-height:1.2;}
+.card-desc{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:12px;}
+.card-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;}
+.card-price-wrap{display:flex;flex-direction:column;}
+.card-price{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;color:var(--sky);}
+.card-price-old{font-family:'Bebas Neue',sans-serif;font-size:15px;color:var(--muted);text-decoration:line-through;letter-spacing:1px;}
+.card-actions-admin{display:none;gap:6px;}
+.card.admin-mode .card-actions-admin{display:flex;}
+.edit-card-btn,.del-card-btn{font-size:13px;padding:6px 12px;border-radius:8px;border:none;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:1px;transition:all .15s;}
+.edit-card-btn{background:rgba(91,184,232,0.15);color:var(--sky);}
+.edit-card-btn:hover{background:rgba(91,184,232,0.3);}
+.del-card-btn{background:rgba(220,50,50,0.15);color:#ff6b6b;}
+.del-card-btn:hover{background:rgba(220,50,50,0.3);}
+.card-btns{display:flex;gap:6px;flex-wrap:wrap;}
+.detail-btn{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase;background:rgba(91,184,232,0.1);border:1px solid rgba(91,184,232,0.3);color:var(--sky);padding:7px 12px;border-radius:10px;cursor:pointer;transition:all .2s;}
+.detail-btn:hover{background:rgba(91,184,232,0.2);}
+.add-cart-btn{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase;background:var(--orange);border:none;color:#fff;padding:7px 12px;border-radius:10px;cursor:pointer;transition:all .2s;}
+.add-cart-btn:hover{background:var(--orange2);}
+.card.admin-mode .add-cart-btn,.card.admin-mode .detail-btn{display:none;}
+.empty{text-align:center;padding:80px 20px;grid-column:1/-1;}
+.empty-icon{font-size:60px;margin-bottom:16px;opacity:0.3;}
+.empty-txt{font-family:'Barlow Condensed',sans-serif;font-size:18px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+
+/* TOAST */
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:#0f2140;border:1px solid var(--green);color:var(--green);font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:14px;letter-spacing:1px;padding:12px 24px;border-radius:12px;z-index:600;opacity:0;transition:all .3s;white-space:nowrap;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* CARRITO SIDEBAR */
+.cart-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:300;backdrop-filter:blur(4px);}
+.cart-overlay.show{display:block;}
+.cart-sidebar{position:fixed;top:0;right:-420px;width:420px;max-width:100vw;height:100vh;background:#0a1e38;border-left:1px solid var(--border);z-index:301;transition:right .3s ease;display:flex;flex-direction:column;}
+.cart-sidebar.open{right:0;}
+.cart-header{padding:24px 24px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.cart-header h2{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:3px;color:var(--sky);}
+.cart-close{background:none;border:none;color:var(--muted);font-size:24px;cursor:pointer;padding:4px;}
+.cart-close:hover{color:var(--text);}
+.cart-items{flex:1;overflow-y:auto;padding:16px 24px;}
+.cart-empty-msg{text-align:center;padding:60px 20px;color:var(--muted);font-size:14px;}
+.cart-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--border);align-items:center;}
+.cart-item-info{flex:1;}
+.cart-item-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;color:var(--text);text-transform:uppercase;line-height:1.2;}
+.cart-item-sku{font-size:10px;color:var(--muted);letter-spacing:2px;margin-top:2px;}
+.cart-item-price{font-family:'Bebas Neue',sans-serif;font-size:15px;color:var(--sky);margin-top:4px;}
+.cart-item-qty{display:flex;align-items:center;gap:8px;margin-top:8px;}
+.qty-btn{width:26px;height:26px;border-radius:6px;border:1px solid var(--border);background:rgba(255,255,255,0.05);color:var(--text);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+.qty-btn:hover{background:rgba(91,184,232,0.15);border-color:var(--sky);}
+.qty-num{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--sky);min-width:20px;text-align:center;}
+.cart-item-remove{background:none;border:none;color:rgba(255,100,100,0.5);cursor:pointer;font-size:18px;padding:4px;transition:color .15s;}
+.cart-item-remove:hover{color:#ff6b6b;}
+.cart-footer{padding:20px 24px;border-top:1px solid var(--border);}
+.cart-subtotal{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border);margin-bottom:14px;}
+.cart-subtotal-label{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.cart-subtotal-val{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:var(--sky);}
+.cart-note{font-size:11px;color:var(--muted);text-align:center;margin-bottom:12px;font-style:italic;}
+.cart-wa-btn{width:100%;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:2px;text-transform:uppercase;background:var(--green);border:none;color:#fff;padding:14px;border-radius:12px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:10px;}
+.cart-wa-btn:hover{background:#1da851;transform:translateY(-1px);}
+.cart-clear-btn{width:100%;margin-top:8px;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:13px;letter-spacing:2px;text-transform:uppercase;background:none;border:1px solid rgba(255,100,100,0.3);color:rgba(255,100,100,0.6);padding:10px;border-radius:10px;cursor:pointer;transition:all .2s;}
+.cart-clear-btn:hover{border-color:#ff6b6b;color:#ff6b6b;}
+
+/* PRODUCT DETAIL MODAL */
+.detail-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);z-index:400;align-items:center;justify-content:center;padding:20px;}
+.detail-overlay.show{display:flex;}
+.detail-modal{background:#0f2140;border:1px solid var(--border);border-radius:20px;width:100%;max-width:680px;max-height:90vh;overflow-y:auto;animation:slideUp .25s ease;}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
+.detail-img{width:100%;max-height:320px;object-fit:contain;background:#071830;border-radius:20px 20px 0 0;padding:12px;}
+.detail-img-placeholder{width:100%;height:280px;background:linear-gradient(135deg,#0d2444,#162d55);border-radius:20px 20px 0 0;display:flex;align-items:center;justify-content:center;font-size:80px;opacity:0.3;}
+.detail-body{padding:28px;}
+.detail-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:16px;}
+.detail-close{background:rgba(255,255,255,0.08);border:none;color:var(--muted);font-size:20px;cursor:pointer;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;}
+.detail-close:hover{background:rgba(255,100,100,0.2);color:#ff6b6b;}
+.detail-badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
+.detail-sku{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.detail-subcat{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--sky);margin-bottom:8px;}
+.detail-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:24px;text-transform:uppercase;color:var(--text);line-height:1.2;margin-bottom:12px;}
+.detail-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:20px;}
+.detail-price-wrap{margin-bottom:20px;}
+.detail-price-old{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--muted);text-decoration:line-through;letter-spacing:1px;}
+.detail-price{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:2px;color:var(--sky);}
+.detail-add-btn{width:100%;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:2px;text-transform:uppercase;background:var(--orange);border:none;color:#fff;padding:14px;border-radius:12px;cursor:pointer;transition:all .2s;}
+.detail-add-btn:hover{background:var(--orange2);}
+
+/* MODALS */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);z-index:200;align-items:center;justify-content:center;padding:20px;}
+.overlay.show{display:flex;}
+.modal{background:#0f2140;border:1px solid var(--border);border-radius:20px;padding:36px;width:100%;max-width:520px;animation:slideUp .25s ease;max-height:90vh;overflow-y:auto;}
+.modal h2{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:3px;margin-bottom:20px;color:var(--sky);}
+.field{margin-bottom:14px;}
+.field label{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.field input,.field select,.field textarea{width:100%;font-family:'Barlow',sans-serif;font-size:14px;background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--text);padding:10px 14px;border-radius:10px;outline:none;transition:border-color .2s;}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--sky);}
+.field select option{background:#0f2140;}
+.field textarea{resize:vertical;min-height:70px;}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.checkbox-row{display:flex;gap:16px;align-items:center;}
+.checkbox-label{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);cursor:pointer;}
+.checkbox-label input{width:auto;}
+.img-preview{width:100%;height:120px;border-radius:10px;background:rgba(255,255,255,0.05);border:2px dashed var(--border);display:flex;align-items:center;justify-content:center;font-size:32px;opacity:0.5;margin-bottom:8px;overflow:hidden;cursor:pointer;transition:border-color .2s;}
+.img-preview:hover{border-color:var(--sky);}
+.img-preview img{width:100%;height:100%;object-fit:cover;opacity:1;}
+.file-hint{font-size:11px;color:var(--muted);text-align:center;margin-bottom:12px;}
+.modal-btns{display:flex;gap:10px;margin-top:12px;}
+.btn-primary{flex:1;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:2px;text-transform:uppercase;background:var(--royal);border:none;color:#fff;padding:12px;border-radius:10px;cursor:pointer;transition:background .2s;}
+.btn-primary:hover{background:var(--sky);color:var(--navy);}
+.btn-cancel{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:14px;letter-spacing:2px;text-transform:uppercase;background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--muted);padding:12px 20px;border-radius:10px;cursor:pointer;transition:all .2s;}
+.btn-cancel:hover{color:var(--text);border-color:rgba(255,255,255,0.3);}
+.login-icon{font-size:48px;text-align:center;margin-bottom:8px;}
+.login-err{font-size:12px;color:#ff6b6b;text-align:center;margin-top:-8px;margin-bottom:10px;display:none;}
+.login-err.show{display:block;}
+.cat-manage{margin-top:12px;}
+.cat-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(91,184,232,0.1);border:1px solid var(--border);color:var(--sky);padding:4px 12px;border-radius:20px;font-size:12px;font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:1px;margin:3px;}
+.cat-tag button{background:none;border:none;color:rgba(255,100,100,0.6);cursor:pointer;font-size:14px;line-height:1;padding:0 2px;}
+.cat-tag button:hover{color:#ff6b6b;}
+
+/* CONTACT */
+.contact-section{background:linear-gradient(180deg,#071830 0%,#0a1e3a 100%);border-top:1px solid var(--border);padding:80px 28px;}
+.contact-inner{max-width:1100px;margin:0 auto;}
+.section-label{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:11px;letter-spacing:8px;text-transform:uppercase;color:var(--sky);margin-bottom:10px;display:block;}
+.section-h{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,64px);letter-spacing:3px;line-height:1;margin-bottom:44px;color:var(--ice);}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
+.contact-block h3{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:3px;color:var(--sky);margin-bottom:18px;}
+.contact-item{display:flex;align-items:center;gap:14px;padding:15px 18px;border-radius:14px;background:rgba(255,255,255,0.03);border:1px solid var(--border);margin-bottom:10px;transition:all .2s;text-decoration:none;color:inherit;}
+.contact-item:hover{border-color:rgba(91,184,232,0.4);background:rgba(91,184,232,0.06);}
+.contact-item.whatsapp:hover{border-color:#25D366;background:rgba(37,211,102,0.07);}
+.c-icon{font-size:20px;width:40px;text-align:center;flex-shrink:0;}
+.c-icon svg{width:22px;height:22px;}
+.c-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(232,244,253,0.55);}
+.c-val{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:15px;letter-spacing:1px;color:var(--ice);margin-top:2px;}
+.c-val.ph{color:rgba(232,244,253,0.45);font-style:italic;font-size:13px;}
+/* EMAIL COPY ROW */
+.email-row{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.email-row .contact-item{flex:1;margin-bottom:0;}
+.copy-btn{flex-shrink:0;background:rgba(91,184,232,0.1);border:1px solid rgba(91,184,232,0.3);color:var(--sky);width:44px;height:54px;border-radius:14px;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.copy-btn:hover{background:rgba(91,184,232,0.25);}
+.social-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+.soc-card{display:flex;align-items:center;gap:13px;padding:16px 18px;border-radius:14px;border:1px solid var(--border);background:rgba(255,255,255,0.03);text-decoration:none;transition:all .25s;}
+.soc-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,0.35);}
+.soc-card.tiktok:hover{border-color:#69C9D0;background:rgba(105,201,208,0.08);}
+.soc-card.instagram:hover{border-color:#E1306C;background:rgba(225,48,108,0.08);}
+.soc-card.facebook:hover{border-color:#1877F2;background:rgba(24,119,242,0.08);}
+.soc-card.email-soc:hover{border-color:var(--orange);background:rgba(232,114,12,0.08);}
+.soc-logo{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.soc-logo svg{width:22px;height:22px;}
+.tiktok .soc-logo{background:#010101;}
+.instagram .soc-logo{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);}
+.facebook .soc-logo{background:#1877F2;}
+.email-soc .soc-logo{background:linear-gradient(135deg,var(--orange),var(--orange2));}
+.soc-net{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);}
+.soc-handle{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:1px;color:var(--text);margin-top:2px;}
+
+/* FOOTER */
+footer{text-align:center;padding:48px 28px 32px;border-top:1px solid var(--border);background:#040f20;}
+.footer-logo-wrap{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:8px;}
+.footer-logo-img{width:52px;height:auto;object-fit:contain;}
+.footer-logo-txt{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:6px;background:linear-gradient(135deg,var(--sky),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.footer-sub{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-top:2px;}
+.footer-socs{display:flex;gap:10px;justify-content:center;margin-top:22px;}
+.fsoc{width:42px;height:42px;border-radius:10px;border:1px solid rgba(91,184,232,0.25);background:#0d2040;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all .2s;}
+.fsoc:hover{border-color:var(--sky);background:#1a3a6b;transform:translateY(-2px);}
+.fsoc svg{width:18px;height:18px;display:block;}
+.footer-links{display:flex;gap:24px;justify-content:center;margin-top:18px;flex-wrap:wrap;}
+.footer-link{font-size:13px;color:rgba(232,244,253,0.6);text-decoration:none;letter-spacing:1px;transition:color .2s;cursor:pointer;background:none;border:none;font-family:'Barlow',sans-serif;}
+.footer-link:hover{color:var(--sky);}
+.footer-copy{font-size:11px;color:rgba(232,244,253,0.35);margin-top:20px;letter-spacing:1px;}
+/* ADMIN BTN IN FOOTER - DISCRETE */
+.footer-admin-btn{margin-top:28px;display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:10px;letter-spacing:2px;text-transform:uppercase;background:none;border:1px solid rgba(255,255,255,0.07);color:rgba(232,244,253,0.2);padding:5px 14px;border-radius:8px;cursor:pointer;transition:all .3s;}
+.footer-admin-btn:hover{color:rgba(232,244,253,0.5);border-color:rgba(255,255,255,0.2);}
+.ice-bar{height:3px;background:linear-gradient(90deg,var(--navy),var(--sky),var(--royal),var(--orange),var(--navy));background-size:200%;animation:shimmer 4s linear infinite;}
+@keyframes shimmer{to{background-position:200% 0;}}
+
+/* BACK TO TOP */
+.back-top{position:fixed;bottom:28px;right:28px;width:44px;height:44px;border-radius:50%;background:var(--royal);border:1px solid rgba(91,184,232,0.4);color:#fff;font-size:20px;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:400;transition:all .2s;box-shadow:0 4px 16px rgba(0,0,0,0.3);}
+.back-top.visible{display:flex;}
+.back-top:hover{background:var(--sky);transform:translateY(-2px);}
+
+@media(max-width:800px){.contact-grid{grid-template-columns:1fr;gap:32px;}}
+@media(max-width:600px){.topbar{padding:0 14px;}.logo-sub{display:none;}.catalog-wrap,.filters{padding-left:14px;padding-right:14px;}.grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));}.contact-section{padding:60px 14px;}.social-grid{grid-template-columns:1fr;}.topbar-socials{display:none;}.cart-sidebar{width:100vw;}}
+</style>
+</head>
+<body>
+
+</div>
+
+<div class="ice-bar"></div>
+<nav class="topbar">
+  <a class="logo-wrap" href="#">
+    <img class="logo-img" src="images/imagen_001.png" alt="Turpicool Logo">
+    <div><div class="logo-txt">TURPICOOL</div><span class="logo-sub">Repuestos HVAC &amp; Electrodomésticos</span></div>
+  </a>
+  <div class="nav-links">
+    <button class="nav-btn" onclick="window.scrollTo(0,0)">Catálogo</button>
+    <button class="nav-btn" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">Contacto</button>
+    <div class="topbar-socials">
+      <a class="tsoc" href="https://www.tiktok.com/@turpicool" target="_blank"><svg viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg></a>
+      <a class="tsoc" href="https://www.instagram.com/turpicool" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="white" stroke="none"/></svg></a>
+      <a class="tsoc" href="https://www.facebook.com/turpicool" target="_blank"><svg viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    </div>
+    <button class="cart-btn" id="cartBtn" onclick="openCart()">🛒 <span class="cart-count" id="cartCountDisplay">0</span></button>
+  </div>
+</nav>
+
+<div class="admin-banner" id="adminBanner">
+  <div class="admin-dot"></div>
+  <span class="admin-banner-txt">Modo Administrador Activo</span>
+  <button class="logout-btn" onclick="logout()">Cerrar sesión</button>
+  <button class="logout-btn" style="margin-left:4px;" onclick="openCatModal()">+ Categoría</button>
+</div>
+
+<div class="hero">
+  <img class="hero-logo-big" src="images/imagen_001.png" alt="Turpicool">
+  <h1>TURPICOOL</h1>
+  <p class="hero-sub">Repuestos Especializados · HVAC &amp; Electrodomésticos</p>
+  <p class="hero-desc">Encuentra los repuestos que necesitas para sistemas de aire acondicionado, calefacción, lavadoras, neveras y más. Calidad garantizada.</p>
+  
+</div>
+
+<div class="filters">
+  <span class="filter-label">Filtrar:</span>
+  <button class="filter-chip on" onclick="filterCat('todos',this)">Todos</button>
+  <button class="filter-chip" onclick="filterCat('hvac',this)">❄ HVAC</button>
+  <button class="filter-chip" onclick="filterCat('appliance',this)">🔧 Electrodomésticos</button>
+  <button class="filter-chip" onclick="filterCat('other',this)">📦 Otros</button>
+  <div id="customCatChips"></div>
+  <div class="sort-wrap">
+    <select class="sort-select" onchange="sortProducts(this.value)">
+      <option value="default">Ordenar</option>
+      <option value="price-asc">Precio ↑</option>
+      <option value="price-desc">Precio ↓</option>
+      <option value="name-asc">Nombre A-Z</option>
+    </select>
+    <input type="text" class="search-input" placeholder="🔍 Buscar..." oninput="searchProducts(this.value)">
+  </div>
+</div>
+
+<div class="catalog-wrap">
+  <div class="catalog-header">
+    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+      <span class="catalog-title">Catálogo</span>
+      <span class="count-badge" id="countBadge">0 productos</span>
+    </div>
+    <button class="add-btn" id="addBtn" onclick="openAdd()">＋ Agregar Producto</button>
+  </div>
+  <div class="grid" id="grid"></div>
+</div>
+
+<div class="contact-section" id="contacto">
+  <div class="contact-inner">
+    <span class="section-label">Comunícate con nosotros</span>
+    <h2 class="section-h">Contacto</h2>
+    <div class="contact-grid">
+      <div>
+        <h3>📞 Información</h3>
+        <a class="contact-item whatsapp" href="https://wa.me/584166533220?text=Hola%20Turpicool%2C%20me%20interesa%20un%20repuesto" target="_blank">
+          <span class="c-icon"><svg viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span>
+          <div><div class="c-label">WhatsApp</div><div class="c-val">+58 416 653 3220</div></div>
+        </a>
+        <a class="contact-item" href="tel:+584242708344"><span class="c-icon">📱</span><div><div class="c-label">CONTACTO DELIVERIES Y ENTREGAS</div><div class="c-val">+58 424 270 8344</div></div></a>
+        <a class="contact-item" href="tel:+584121063498"><span class="c-icon">📱</span><div><div class="c-label">CONTACTO DELIVERIES Y ENTREGAS</div><div class="c-val">+58 412 106 3498</div></div></a>
+        <a class="contact-item" href="tel:+584166533220"><span class="c-icon">📱</span><div><div class="c-label">PEDIDOS Y PRESUPUESTOS</div><div class="c-val">+58 416 653 3220</div></div></a>
+        <div class="email-row">
+          <a class="contact-item" href="mailto:turpicool@gmail.com"><span class="c-icon">✉️</span><div><div class="c-label">Correo electrónico</div><div class="c-val">turpicool@gmail.com</div></div></a>
+          <button class="copy-btn" onclick="copyEmail()" title="Copiar correo">📋</button>
+        </div>
+      </div>
+      <div>
+        <h3>🌐 Redes Sociales</h3>
+        <div class="social-grid">
+          <a class="soc-card tiktok" href="https://www.tiktok.com/@turpicool" target="_blank"><div class="soc-logo tiktok"><svg viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg></div><div><div class="soc-net">TikTok</div><div class="soc-handle">@Turpicool</div></div></a>
+          <a class="soc-card instagram" href="https://www.instagram.com/turpicool" target="_blank"><div class="soc-logo instagram"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="white" stroke="none"/></svg></div><div><div class="soc-net">Instagram</div><div class="soc-handle">@Turpicool</div></div></a>
+          <a class="soc-card facebook" href="https://www.facebook.com/turpicool" target="_blank"><div class="soc-logo facebook"><svg viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></div><div><div class="soc-net">Facebook</div><div class="soc-handle">@Turpicool</div></div></a>
+          <a class="soc-card email-soc" href="mailto:turpicool@gmail.com"><div class="soc-logo email-soc"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="soc-net">Correo</div><div class="soc-handle">turpicool@gmail.com</div></div></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo-wrap"><img class="footer-logo-img" src="images/imagen_001.png" alt="Turpicool"><div class="footer-logo-txt">TURPICOOL</div></div>
+  <div class="footer-sub">Repuestos HVAC &amp; Electrodomésticos · Especialistas</div>
+  <div class="footer-socs">
+    <a class="fsoc" href="https://www.tiktok.com/@turpicool" target="_blank"><svg viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg></a>
+    <a class="fsoc" href="https://www.instagram.com/turpicool" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="white" stroke="none"/></svg></a>
+    <a class="fsoc" href="https://www.facebook.com/turpicool" target="_blank"><svg viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    <a class="fsoc" href="mailto:turpicool@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+    <a class="fsoc" href="https://wa.me/584166533220" target="_blank"><svg viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+  </div>
+  <div class="footer-links">
+    <button class="footer-link" onclick="window.scrollTo({top:0,behavior:'smooth'})">Inicio</button>
+    <button class="footer-link" onclick="window.scrollTo({top:0,behavior:'smooth'})">Catálogo</button>
+    <button class="footer-link" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">Contacto</button>
+    <a href="mailto:turpicool@gmail.com" class="footer-link">turpicool@gmail.com</a>
+  </div>
+  <p class="footer-copy">© 2026 Turpicool · Todos los derechos reservados</p>
+  <div><button class="footer-admin-btn" onclick="openLogin()">⚙</button></div>
+</footer>
+<div class="ice-bar"></div>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<div class="toast" id="toast"></div>
+
+<!-- CART -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header"><h2>🛒 Tu Pedido</h2><button class="cart-close" onclick="closeCart()">✕</button></div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer" id="cartFooter" style="display:none;">
+    <div class="cart-subtotal"><span class="cart-subtotal-label">Subtotal</span><span class="cart-subtotal-val" id="cartSubtotal">REF. 0.00</span></div>
+    <p class="cart-note">* Precios de referencia en USD. El vendedor confirmará el total final.</p>
+    <button class="cart-wa-btn" onclick="sendCartToWhatsApp()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Enviar pedido por WhatsApp
+    </button>
+    <button class="cart-clear-btn" onclick="clearCart()">Vaciar carrito</button>
+  </div>
+</div>
+
+<!-- DETAIL MODAL -->
+<div class="detail-overlay" id="detailModal">
+  <div class="detail-modal">
+    <div id="detailImgWrap"></div>
+    <div class="detail-body">
+      <div class="detail-top">
+        <div style="flex:1;">
+          <div class="detail-badges" id="detailBadges"></div>
+          <div class="detail-sku" id="detailSku"></div>
+          <div class="detail-subcat" id="detailSubcat"></div>
+        </div>
+        <button class="detail-close" onclick="closeDetail()">✕</button>
+      </div>
+      <div class="detail-name" id="detailName"></div>
+      <div class="detail-desc" id="detailDesc"></div>
+      <div class="detail-price-wrap">
+        <div class="detail-price-old" id="detailPriceOld"></div>
+        <div class="detail-price" id="detailPrice"></div>
+      </div>
+      <button class="detail-add-btn" id="detailAddBtn" onclick="addToCartFromDetail()">🛒 Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+<!-- LOGIN MODAL -->
+<div class="overlay" id="loginModal">
+  <div class="modal" style="max-width:360px;">
+    <div class="login-icon">🔐</div>
+    <h2 style="text-align:center;">Administrador</h2>
+    <div class="field"><label>Contraseña</label><input type="password" id="pwInput" placeholder="Ingresa la contraseña" onkeydown="if(event.key==='Enter')doLogin()"></div>
+    <p class="login-err" id="loginErr">Contraseña incorrecta</p>
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closeOverlay('loginModal')">Cancelar</button>
+      <button class="btn-primary" onclick="doLogin()">Entrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCT MODAL -->
+<div class="overlay" id="productModal">
+  <div class="modal">
+    <h2 id="modalTitle">Agregar Producto</h2>
+    <div class="field"><label>Imagen</label><div class="img-preview" id="imgPreview" onclick="document.getElementById('imgFile').click()"><span>📷</span></div><input type="file" id="imgFile" accept="image/*" style="display:none" onchange="previewImg(this)"><p class="file-hint">Clic para cambiar imagen</p></div>
+    <div class="field-row">
+      <div class="field"><label>SKU</label><input type="text" id="prodSku" placeholder="Ej: SOP-001"></div>
+      <div class="field"><label>Referencia</label><input type="text" id="prodRef" placeholder="Ej: G1111.AF2"></div>
+    </div>
+    <div class="field"><label>Nombre del producto</label><input type="text" id="prodName" placeholder="Nombre completo del producto"></div>
+    <div class="field-row">
+      <div class="field"><label>Categoría</label><select id="prodCat"><option value="hvac">❄ HVAC</option><option value="appliance">🔧 Electrodomésticos</option><option value="other">📦 Otros</option></select></div>
+      <div class="field"><label>Subcategoría</label><input type="text" id="prodSubcat" placeholder="Ej: Capacitores"></div>
+    </div>
+    <div class="field"><label>Descripción</label><textarea id="prodDesc" placeholder="Especificaciones, compatibilidad..."></textarea></div>
+    <div class="field-row">
+      <div class="field"><label>Precio REF. ($)</label><input type="number" id="prodPrice" placeholder="0.00" min="0" step="0.01"></div>
+      <div class="field"><label>Precio anterior ($)</label><input type="number" id="prodPriceOld" placeholder="Opcional" min="0" step="0.01"></div>
+    </div>
+    <div class="field"><label>Badges</label>
+      <div class="checkbox-row">
+        <label class="checkbox-label"><input type="checkbox" id="badgeNew"> 🟢 Nuevo</label>
+        <label class="checkbox-label"><input type="checkbox" id="badgeSale"> 🔴 Oferta</label>
+      </div>
+    </div>
+    <div class="modal-btns"><button class="btn-cancel" onclick="closeOverlay('productModal')">Cancelar</button><button class="btn-primary" id="saveBtn" onclick="saveProduct()">Guardar</button></div>
+  </div>
+</div>
+
+<!-- CATEGORY MODAL -->
+<div class="overlay" id="catModal">
+  <div class="modal" style="max-width:420px;">
+    <h2>Gestionar Categorías</h2>
+    <div class="field"><label>Nueva categoría</label>
+      <div style="display:flex;gap:8px;">
+        <input type="text" id="newCatInput" placeholder="Ej: Herramientas" style="flex:1;" onkeydown="if(event.key==='Enter')addCategory()">
+        <button class="btn-primary" style="flex:0;padding:10px 16px;" onclick="addCategory()">＋</button>
+      </div>
+    </div>
+    <div class="field"><label>Categorías personalizadas</label><div class="cat-manage" id="catManageList"></div></div>
+    <div class="modal-btns"><button class="btn-cancel" onclick="closeOverlay('catModal')">Cerrar</button></div>
+  </div>
+</div>
+
+<!-- DELETE MODAL -->
+<div class="overlay" id="delModal">
+  <div class="modal" style="max-width:360px;text-align:center;">
+    <div style="font-size:48px;margin-bottom:12px;">🗑️</div>
+    <h2 style="color:#ff6b6b;">Eliminar</h2>
+    <p style="color:var(--muted);margin-bottom:24px;font-size:14px;">¿Seguro que deseas eliminar este producto?</p>
+    <div class="modal-btns"><button class="btn-cancel" onclick="closeOverlay('delModal')">Cancelar</button><button class="btn-primary" style="background:#c0392b;" onclick="confirmDelete()">Eliminar</button></div>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+var ADMIN_PASS='turpicool2024';
+var isAdmin=false,editingId=null,deletingId=null,currentFilter='todos',currentSearch='',currentSort='default',currentImgData=null,detailProductId=null;
+var cart=[];
+
+var defaultProducts=[
+  {id:1,sku:'SOP-001',ref:'G1111.AF2',name:'Soporte Mini Split APAB-2100',cat:'hvac',subcat:'Soportes y Montaje',desc:'Soporte de pared para mini split hasta 100 Kg. Compatible con unidades de 5,000 a 36,000 BTU. Incluye kit de instalación.',price:15.44,priceOld:0,img:'images/imagen_002.jpg',badgeNew:false,badgeSale:false},
+  {id:2,sku:'TAR-001',ref:'G1111.TSQD05',name:'Tarjeta Universal 2 Sensores APCB-223A',cat:'hvac',subcat:'Tarjetas de Control',desc:'Tarjeta de control universal para mini split 220V. 2 sensores de temperatura, 5 modos de operación, auto diagnóstico.',price:43.82,priceOld:0,img:'images/imagen_003.jpg',badgeNew:false,badgeSale:false},
+  {id:3,sku:'TAR-002',ref:'G1111.TSQD02SW',name:'Tarjeta Universal 1 Sensor APCB-313A',cat:'hvac',subcat:'Tarjetas de Control',desc:'Tarjeta de control universal para mini split 110V/220V. 1 sensor de temperatura, 3 velocidades de ventilador, 5 modos de operación.',price:31.65,priceOld:0,img:'images/imagen_004.jpg',badgeNew:false,badgeSale:false},
+  {id:4,sku:'CAP-001',ref:'G1111.CCP35',name:'Capacitor 35 Mfd 250V Plastico',cat:'hvac',subcat:'Capacitores',desc:'Capacitor de marcha 35 MFD 250VAC. Compatible con bombas de agua y aplicaciones eléctricas generales.',price:6.62,priceOld:0,img:'images/imagen_005.jpg',badgeNew:false,badgeSale:false},
+  {id:5,sku:'CAP-002',ref:'G0319.355',name:'Capacitor 35+5 Mfd 370V Ovalado',cat:'hvac',subcat:'Capacitores',desc:'Capacitor de marcha dual 35+5 MFD 370VAC. Diseñado para sistemas de aire acondicionado.',price:7.11,priceOld:0,img:'images/imagen_006.jpg',badgeNew:false,badgeSale:false},
+  {id:6,sku:'VAL-001',ref:'G2406.5',name:'Valvula APVS-14142 1/4x1/4x5cm',cat:'hvac',subcat:'Válvulas y Conexiones',desc:'Válvula de acceso 1/4 SAE con vástago de cobre de 5cm. Incluye núcleo y tapa de latón.',price:3.26,priceOld:0,img:'images/imagen_007.jpg',badgeNew:false,badgeSale:false},
+  {id:7,sku:'LIM-001',ref:'G0101.22',name:'EVAR 22 Acido Limpiador Galon',cat:'hvac',subcat:'Limpiadores y Químicos',desc:'Limpiador ácido biodegradable EVAR 22 para condensadores y evaporadores. Presentación galón.',price:27.55,priceOld:0,img:'images/imagen_008.jpg',badgeNew:false,badgeSale:false},
+  {id:8,sku:'LIM-002',ref:'G0101.11',name:'EVAR 22 Acido Limpiador Litro',cat:'hvac',subcat:'Limpiadores y Químicos',desc:'Limpiador ácido biodegradable EVAR 22 para condensadores y evaporadores. Presentación litro.',price:9.29,priceOld:0,img:'images/imagen_009.jpg',badgeNew:false,badgeSale:false},
+  {id:9,sku:'LIM-003',ref:'GNC412775',name:'Nu-Calgon 4127-75 Blackhawk 18 oz',cat:'hvac',subcat:'Limpiadores y Químicos',desc:'Limpiador Blackhawk 18oz de Nu-Calgon para sistemas de aire acondicionado.',price:11.29,priceOld:0,img:'images/imagen_010.jpg',badgeNew:false,badgeSale:false},
+  {id:10,sku:'LIM-004',ref:'G61065',name:'Fresh Mini Split Nucalgon 61065',cat:'hvac',subcat:'Limpiadores y Químicos',desc:'Eliminador de olores Fresh Cleanair de Nu-Calgon para mini split.',price:21.73,priceOld:0,img:'images/imagen_011.jpg',badgeNew:false,badgeSale:false},
+  {id:11,sku:'PRO-001',ref:'GIEAYA012',name:'Gulfcoat IEA-YA-012 Marinegold 12 oz',cat:'hvac',subcat:'Protectores y Recubrimientos',desc:'Protector anticorrosivo en aerosol Marinegold 12oz de Gulfcoat Modine.',price:38.23,priceOld:0,img:'images/imagen_012.jpg',badgeNew:false,badgeSale:false},
+  {id:12,sku:'SOL-001',ref:'G0607.1504',name:'Harris SSWF Fundente de Plata 4 Oz',cat:'hvac',subcat:'Soldadura y Fundentes',desc:'Fundente de plata Harris 4oz para soldadura en sistemas de refrigeración.',price:10.69,priceOld:0,img:'images/imagen_013.jpg',badgeNew:false,badgeSale:false},
+  {id:13,sku:'SOL-002',ref:'G2400.305',name:'Lucas 95060 Soldadura Plata 5% 20 Pulg',cat:'hvac',subcat:'Soldadura y Fundentes',desc:'Soldadura plata 5% Lucas 95060. Tubo de 28 barras de 20 pulgadas. Precio por libra.',price:6.00,priceOld:0,img:'images/imagen_014.jpg',badgeNew:false,badgeSale:false},
+  {id:14,sku:'GAS-001',ref:'G0201.800',name:'Map Pro 14.1 Oz',cat:'hvac',subcat:'Gas y Combustibles',desc:'Gas Map Pro 14.1 oz para soplete de soldadura.',price:14.82,priceOld:0,img:'images/imagen_015.jpg',badgeNew:false,badgeSale:false},
+  {id:15,sku:'REF-001',ref:'',name:'Refrigerante R410A',cat:'hvac',subcat:'Refrigerantes',desc:'Gas refrigerante R410A. Cilindro 25 lbs. Para sistemas de aire acondicionado modernos mini split y ducto.',price:0,priceOld:0,img:'images/imagen_016.jpg',badgeNew:true,badgeSale:false},
+  {id:16,sku:'REF-002',ref:'',name:'Refrigerante R22',cat:'hvac',subcat:'Refrigerantes',desc:'Gas refrigerante R22. Cilindro 30 lbs. Para sistemas de aire acondicionado de ventana y equipos legacy.',price:0,priceOld:0,img:'images/imagen_017.jpg',badgeNew:true,badgeSale:false},
+  {id:17,sku:'REF-003',ref:'',name:'Refrigerante R134A',cat:'hvac',subcat:'Refrigerantes',desc:'Gas refrigerante R134A. Cilindro 30 lbs. Para refrigeración automotriz y aplicaciones comerciales.',price:0,priceOld:0,img:'images/imagen_018.jpg',badgeNew:true,badgeSale:false}
+];
+
+var JSONBIN_KEY = '$2a$10$yER2yanpxuBQxCUEGJIRTOp74LFve9aJ6i45e5dgGvFPlij0iC2MO';
+var JSONBIN_URL = '';
+var products = defaultProducts.slice();
+var customCats = JSON.parse(localStorage.getItem('tc_cats') || '[]');
+
+// Load from JSONBin on startup
+(function loadFromCloud(){
+  var savedBin = localStorage.getItem('tc_binid');
+  if(!savedBin){ initJSONBin(); return; }
+  JSONBIN_URL = 'https://api.jsonbin.io/v3/b/' + savedBin + '/latest';
+  fetch(JSONBIN_URL, {headers:{'X-Master-Key':JSONBIN_KEY}})
+    .then(function(r){return r.json();})
+    .then(function(d){
+      if(d && d.record && d.record.products && d.record.products.length > 0){
+        products = d.record.products;
+        if(d.record.cats) customCats = d.record.cats;
+        render();
+        renderCustomCatChips();
+        console.log('✅ Catálogo cargado desde la nube');
+      }
+    })
+    .catch(function(){ console.log('Usando productos locales'); });
+})();
+
+function initJSONBin(){
+  var initialData = {products: defaultProducts, cats: []};
+  fetch('https://api.jsonbin.io/v3/b', {
+    method:'POST',
+    headers:{'Content-Type':'application/json','X-Master-Key':JSONBIN_KEY,'X-Bin-Name':'turpicool-catalog','X-Bin-Private':'false'},
+    body: JSON.stringify(initialData)
+  })
+  .then(function(r){return r.json();})
+  .then(function(d){
+    if(d && d.metadata && d.metadata.id){
+      localStorage.setItem('tc_binid', d.metadata.id);
+      JSONBIN_URL = 'https://api.jsonbin.io/v3/b/' + d.metadata.id + '/latest';
+      console.log('✅ JSONBin creado:', d.metadata.id);
+    }
+  })
+  .catch(function(e){ console.log('Error JSONBin:', e); });
+}
+
+function save(){
+  var binId = localStorage.getItem('tc_binid');
+  if(!binId){ console.log('Sin bin ID, guardando localmente'); return; }
+  fetch('https://api.jsonbin.io/v3/b/' + binId, {
+    method:'PUT',
+    headers:{'Content-Type':'application/json','X-Master-Key':JSONBIN_KEY},
+    body: JSON.stringify({products: products, cats: customCats})
+  })
+  .then(function(){console.log('✅ Guardado en la nube');})
+  .catch(function(e){console.log('Error guardando:', e);});
+}
+function saveCats(){try{localStorage.setItem('tc_cats',JSON.stringify(customCats));}catch(e){}save();}
+function nextId(){return products.length?Math.max.apply(null,products.map(function(p){return p.id;}))+1:1;}
+
+function catLabel(c){
+  if(c==='hvac')return '<span class="cat-badge cat-hvac">HVAC</span>';
+  if(c==='appliance')return '<span class="cat-badge cat-appliance">Electrod.</span>';
+  return '<span class="cat-badge cat-other">'+c+'</span>';
+}
+function catIcon(c){return c==='hvac'?'❄️':c==='appliance'?'🔧':'📦';}
+function fmtPrice(p){
+  var v=parseFloat(p);
+  if(isNaN(v)||v===0)return null;
+  return 'REF. '+v.toLocaleString('en',{minimumFractionDigits:2,maximumFractionDigits:2});
+}
+
+function filterCustomCat(el){filterCat(el.getAttribute('data-cc'),el);}
+function renderCustomCatChips(){
+  var wrap=document.getElementById('customCatChips');
+  if(!wrap)return;
+  var out=[];
+  for(var i=0;i<customCats.length;i++){
+    out.push('<button class="filter-chip" data-cc="'+customCats[i]+'" onclick="filterCustomCat(this)">&#128193; '+customCats[i]+'</button>');
+  }
+  wrap.innerHTML=out.join('');
+}
+function renderCatSelectOptions(){
+  var sel=document.getElementById('prodCat');if(!sel)return;
+  var base='<option value="hvac">❄ HVAC</option><option value="appliance">🔧 Electrodomésticos</option><option value="other">📦 Otros</option>';
+  var custom=customCats.map(function(c){return '<option value="'+c+'">📁 '+c+'</option>';}).join('');
+  sel.innerHTML=base+custom;
+}
+
+function render(){
+  var grid=document.getElementById('grid');
+  var list=products.filter(function(p){
+    var mc=currentFilter==='todos'||p.cat===currentFilter;
+    var q=currentSearch.toLowerCase();
+    var mq=!q||p.name.toLowerCase().indexOf(q)>=0||(p.desc&&p.desc.toLowerCase().indexOf(q)>=0)||(p.sku&&p.sku.toLowerCase().indexOf(q)>=0)||(p.subcat&&p.subcat.toLowerCase().indexOf(q)>=0);
+    return mc&&mq;
+  });
+  if(currentSort==='price-asc')list.sort(function(a,b){return a.price-b.price;});
+  else if(currentSort==='price-desc')list.sort(function(a,b){return b.price-a.price;});
+  else if(currentSort==='name-asc')list.sort(function(a,b){return a.name.localeCompare(b.name);});
+  document.getElementById('countBadge').textContent=list.length+' producto'+(list.length!==1?'s':'');
+  var _st=document.getElementById('statTotal');if(_st)_st.textContent=products.length;
+  if(!list.length){grid.innerHTML='<div class="empty"><div class="empty-icon">🔍</div><div class="empty-txt">No se encontraron productos</div></div>';return;}
+  grid.innerHTML=list.map(function(p){
+    var badges='';
+    if(p.badgeNew)badges+='<span class="badge-new">Nuevo</span>';
+    if(p.badgeSale)badges+='<span class="badge-sale">Oferta</span>';
+    var fp=fmtPrice(p.price);
+    var priceHtml='';
+    if(p.priceOld&&p.priceOld>0)priceHtml+='<div class="card-price-old">REF. '+parseFloat(p.priceOld).toLocaleString('en',{minimumFractionDigits:2})+'</div>';
+    priceHtml+='<div class="card-price">'+(fp||'<span style="font-size:13px;font-family:Barlow,sans-serif;font-weight:400;">Consultar precio</span>')+'</div>';
+    return '<div class="card'+(isAdmin?' admin-mode':'')+'" data-id="'+p.id+'">'+
+      '<div class="card-img">'+
+        (p.img?'<img src="'+p.img+'" alt="'+p.name+'">':'<span class="placeholder">'+catIcon(p.cat)+'</span>')+
+        catLabel(p.cat)+
+        (badges?'<div class="product-badges">'+badges+'</div>':'')+
+      '</div>'+
+      '<div class="card-body">'+
+        (p.sku?'<div class="card-sku">'+p.sku+(p.ref?' · '+p.ref:'')+'</div>':'')+
+        (p.subcat?'<div class="card-subcat">'+p.subcat+'</div>':'')+
+        '<div class="card-name">'+p.name+'</div>'+
+        '<div class="card-footer">'+
+          '<div class="card-price-wrap">'+priceHtml+'</div>'+
+          '<div class="card-actions-admin">'+
+            '<button class="edit-card-btn" onclick="openEdit('+p.id+')">✏</button>'+
+            '<button class="del-card-btn" onclick="openDel('+p.id+')">🗑</button>'+
+          '</div>'+
+          '<div class="card-btns">'+
+            '<button class="detail-btn" onclick="openDetail('+p.id+')">Ver detalles</button>'+
+            '<button class="add-cart-btn" onclick="addToCart('+p.id+')">+ Carrito</button>'+
+          '</div>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+}
+
+function filterCat(cat,el){
+  currentFilter=cat;
+  document.querySelectorAll('.filter-chip').forEach(function(c){c.classList.remove('on');});
+  if(el)el.classList.add('on');render();
+}
+function searchProducts(q){currentSearch=q;render();}
+function sortProducts(v){currentSort=v;render();}
+
+// DETAIL MODAL
+function openDetail(id){
+  var p=products.find(function(x){return x.id===id;});if(!p)return;
+  detailProductId=id;
+  var imgWrap=document.getElementById('detailImgWrap');
+  imgWrap.innerHTML=p.img?'<img class="detail-img" src="'+p.img+'" alt="'+p.name+'">':'<div class="detail-img-placeholder">'+catIcon(p.cat)+'</div>';
+  var badges='';
+  if(p.badgeNew)badges+='<span class="badge-new">Nuevo</span>';
+  if(p.badgeSale)badges+='<span class="badge-sale">Oferta</span>';
+  document.getElementById('detailBadges').innerHTML=badges;
+  document.getElementById('detailSku').textContent=(p.sku||'')+(p.ref?' · '+p.ref:'');
+  document.getElementById('detailSubcat').textContent=p.subcat||'';
+  document.getElementById('detailName').textContent=p.name;
+  document.getElementById('detailDesc').textContent=p.desc||'';
+  var fp=fmtPrice(p.price);
+  document.getElementById('detailPrice').textContent=fp||'Consultar precio';
+  var oldEl=document.getElementById('detailPriceOld');
+  oldEl.textContent=p.priceOld&&p.priceOld>0?'REF. '+parseFloat(p.priceOld).toLocaleString('en',{minimumFractionDigits:2}):'';
+  document.getElementById('detailModal').classList.add('show');
+}
+function closeDetail(){document.getElementById('detailModal').classList.remove('show');}
+function addToCartFromDetail(){if(detailProductId)addToCart(detailProductId);closeDetail();}
+document.getElementById('detailModal').addEventListener('click',function(e){if(e.target===this)closeDetail();});
+
+// ADMIN
+function openLogin(){
+  document.getElementById('pwInput').value='';
+  document.getElementById('loginErr').classList.remove('show');
+  showOverlay('loginModal');
+  setTimeout(function(){document.getElementById('pwInput').focus();},200);
+}
+function doLogin(){
+  if(document.getElementById('pwInput').value===ADMIN_PASS){
+    isAdmin=true;closeOverlay('loginModal');
+    document.getElementById('adminBanner').classList.add('show');
+    document.getElementById('addBtn').classList.add('visible');
+    render();
+  }else{
+    document.getElementById('loginErr').classList.add('show');
+    document.getElementById('pwInput').focus();
+  }
+}
+function logout(){
+  isAdmin=false;
+  document.getElementById('adminBanner').classList.remove('show');
+  document.getElementById('addBtn').classList.remove('visible');
+  render();
+}
+
+// CATEGORIES
+function openCatModal(){renderCatManageList();showOverlay('catModal');}
+function renderCatManageList(){
+  var el=document.getElementById('catManageList');
+  if(!customCats.length){el.innerHTML='<span style="color:var(--muted);font-size:12px;">Sin categorías personalizadas</span>';return;}
+  el.innerHTML=customCats.map(function(c,i){return '<span class="cat-tag">📁 '+c+'<button onclick="removeCategory('+i+')">×</button></span>';}).join('');
+}
+function addCategory(){
+  var val=document.getElementById('newCatInput').value.trim();
+  if(!val)return;
+  customCats.push(val);saveCats();
+  document.getElementById('newCatInput').value='';
+  renderCatManageList();renderCustomCatChips();renderCatSelectOptions();
+}
+function removeCategory(i){customCats.splice(i,1);saveCats();renderCatManageList();renderCustomCatChips();renderCatSelectOptions();}
+
+// PRODUCT CRUD
+function resetModal(){
+  ['prodSku','prodRef','prodName','prodSubcat','prodDesc','prodPrice','prodPriceOld'].forEach(function(id){document.getElementById(id).value='';});
+  document.getElementById('prodCat').value='hvac';
+  document.getElementById('badgeNew').checked=false;
+  document.getElementById('badgeSale').checked=false;
+  document.getElementById('imgPreview').innerHTML='<span>📷</span>';
+  currentImgData=null;editingId=null;
+}
+function openAdd(){resetModal();renderCatSelectOptions();document.getElementById('modalTitle').textContent='Agregar Producto';document.getElementById('saveBtn').textContent='Guardar';showOverlay('productModal');}
+function openEdit(id){
+  var p=products.find(function(x){return x.id===id;});if(!p)return;
+  resetModal();renderCatSelectOptions();editingId=id;
+  document.getElementById('modalTitle').textContent='Editar Producto';
+  document.getElementById('saveBtn').textContent='Actualizar';
+  document.getElementById('prodSku').value=p.sku||'';
+  document.getElementById('prodRef').value=p.ref||'';
+  document.getElementById('prodName').value=p.name;
+  document.getElementById('prodCat').value=p.cat;
+  document.getElementById('prodSubcat').value=p.subcat||'';
+  document.getElementById('prodDesc').value=p.desc||'';
+  document.getElementById('prodPrice').value=p.price||'';
+  document.getElementById('prodPriceOld').value=p.priceOld||'';
+  document.getElementById('badgeNew').checked=p.badgeNew||false;
+  document.getElementById('badgeSale').checked=p.badgeSale||false;
+  if(p.img){currentImgData=p.img;document.getElementById('imgPreview').innerHTML='<img src="'+p.img+'">';}
+  showOverlay('productModal');
+}
+function saveProduct(){
+  var name=document.getElementById('prodName').value.trim();
+  if(!name){alert('Ingresa el nombre del producto.');return;}
+  var obj={
+    id:editingId||nextId(),
+    sku:document.getElementById('prodSku').value.trim(),
+    ref:document.getElementById('prodRef').value.trim(),
+    name:name,cat:document.getElementById('prodCat').value,
+    subcat:document.getElementById('prodSubcat').value.trim(),
+    desc:document.getElementById('prodDesc').value.trim(),
+    price:parseFloat(document.getElementById('prodPrice').value)||0,
+    priceOld:parseFloat(document.getElementById('prodPriceOld').value)||0,
+    badgeNew:document.getElementById('badgeNew').checked,
+    badgeSale:document.getElementById('badgeSale').checked,
+    img:currentImgData||(editingId?products.find(function(p){return p.id===editingId;}).img:null)
+  };
+  if(editingId){for(var i=0;i<products.length;i++){if(products[i].id===editingId){products[i]=obj;break;}}}
+  else{products.push(obj);}
+  save();closeOverlay('productModal');render();
+}
+function openDel(id){deletingId=id;showOverlay('delModal');}
+function confirmDelete(){products=products.filter(function(p){return p.id!==deletingId;});save();closeOverlay('delModal');render();}
+function previewImg(input){
+  var file=input.files[0];if(!file)return;
+  var reader=new FileReader();
+  reader.onload=function(e){currentImgData=e.target.result;document.getElementById('imgPreview').innerHTML='<img src="'+e.target.result+'">';};
+  reader.readAsDataURL(file);
+}
+
+// CART
+function addToCart(id){
+  var p=products.find(function(x){return x.id===id;});if(!p)return;
+  var existing=cart.find(function(x){return x.id===id;});
+  if(existing){existing.qty++;}else{cart.push({id:id,name:p.name,sku:p.sku,qty:1,price:p.price});}
+  updateCartCount();
+  shakeCartBtn();
+  showToast('✅ Producto agregado al carrito');
+}
+function shakeCartBtn(){
+  var btn=document.getElementById('cartBtn');
+  btn.classList.remove('shake');
+  void btn.offsetWidth;
+  btn.classList.add('shake');
+}
+function updateCartCount(){
+  var total=cart.reduce(function(s,i){return s+i.qty;},0);
+  document.getElementById('cartCountDisplay').textContent=total;
+}
+function openCart(){renderCart();document.getElementById('cartOverlay').classList.add('show');document.getElementById('cartSidebar').classList.add('open');}
+function closeCart(){document.getElementById('cartOverlay').classList.remove('show');document.getElementById('cartSidebar').classList.remove('open');}
+function renderCart(){
+  var el=document.getElementById('cartItems');
+  var footer=document.getElementById('cartFooter');
+  if(!cart.length){el.innerHTML='<div class="cart-empty-msg">🛒<br><br>Tu carrito está vacío</div>';footer.style.display='none';return;}
+  footer.style.display='block';
+  var subtotal=cart.reduce(function(s,i){return s+(i.price*i.qty);},0);
+  document.getElementById('cartSubtotal').textContent='REF. '+subtotal.toLocaleString('en',{minimumFractionDigits:2,maximumFractionDigits:2});
+  el.innerHTML=cart.map(function(item,idx){
+    var lineTotal=item.price*item.qty;
+    return '<div class="cart-item">'+
+      '<div class="cart-item-info">'+
+        '<div class="cart-item-name">'+item.name+'</div>'+
+        (item.sku?'<div class="cart-item-sku">'+item.sku+'</div>':'')+
+        (item.price?'<div class="cart-item-price">REF. '+item.price.toLocaleString('en',{minimumFractionDigits:2})+' × '+item.qty+(item.qty>1?' = REF. '+lineTotal.toLocaleString('en',{minimumFractionDigits:2}):'')+'</div>':'')+
+        '<div class="cart-item-qty">'+
+          '<button class="qty-btn" onclick="changeQty('+idx+',-1)">−</button>'+
+          '<span class="qty-num">'+item.qty+'</span>'+
+          '<button class="qty-btn" onclick="changeQty('+idx+',1)">+</button>'+
+        '</div>'+
+      '</div>'+
+      '<button class="cart-item-remove" onclick="removeFromCart('+idx+')">✕</button>'+
+    '</div>';
+  }).join('');
+}
+function changeQty(idx,delta){cart[idx].qty+=delta;if(cart[idx].qty<=0)cart.splice(idx,1);updateCartCount();renderCart();}
+function removeFromCart(idx){cart.splice(idx,1);updateCartCount();renderCart();}
+function clearCart(){cart=[];updateCartCount();renderCart();}
+function sendCartToWhatsApp(){
+  if(!cart.length)return;
+  var msg='Hola Turpicool! Me interesa hacer un pedido:\n\n';
+  cart.forEach(function(item){
+    msg+='• '+item.name+(item.sku?' ('+item.sku+')':'')+' x'+item.qty;
+    if(item.price)msg+=' — REF. '+item.price.toLocaleString('en',{minimumFractionDigits:2});
+    msg+='\n';
+  });
+  var subtotal=cart.reduce(function(s,i){return s+(i.price*i.qty);},0);
+  if(subtotal>0)msg+='\nSubtotal REF.: $'+subtotal.toLocaleString('en',{minimumFractionDigits:2});
+  msg+='\n\nPor favor confirmarme disponibilidad y precio final. ¡Gracias!';
+  window.open('https://wa.me/584166533220?text='+encodeURIComponent(msg),'_blank');
+}
+
+// EMAIL COPY
+function copyEmail(){
+  navigator.clipboard.writeText('turpicool@gmail.com').then(function(){
+    showToast('📋 Correo copiado al portapapeles');
+  }).catch(function(){
+    showToast('turpicool@gmail.com');
+  });
+}
+
+function showToast(msg){
+  var t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},2500);
+}
+
+function showOverlay(id){document.getElementById(id).classList.add('show');}
+function closeOverlay(id){document.getElementById(id).classList.remove('show');}
+document.querySelectorAll('.overlay').forEach(function(o){
+  o.addEventListener('click',function(e){if(e.target===o)o.classList.remove('show');});
+});
+
+window.addEventListener('scroll',function(){
+  document.getElementById('backTop').classList.toggle('visible',window.scrollY>300);
+});
+
+renderCustomCatChips();
+render();
+</script>
+</body>
+</html>
