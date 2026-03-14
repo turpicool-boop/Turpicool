@@ -8,43 +8,32 @@ on:
 jobs:
   actualizar:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Clonar repositorio
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Instalar Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
       - name: Instalar dependencias
         run: pip install pandas openpyxl requests
 
-      - name: Descargar Excel y generar precios.json
+      - name: Generar precios.json
         run: |
-          python3 - <<'EOF'
+          python3 -c "
           import requests, pandas as pd, json, io
-
-          DRIVE_FILE_ID = "1RlYJMsZ0uMpEhrOlUG2Y9EF88ZHzR3Sk"
-          url = f"https://docs.google.com/spreadsheets/d/{DRIVE_FILE_ID}/export?format=xlsx"
-          response = requests.get(url, timeout=30)
-          response.raise_for_status()
-
-          df = pd.read_excel(io.BytesIO(response.content), sheet_name="Lista de Precios", header=10)
-          df.columns = ['_', 'codigo', 'producto', 'cantidad', 'precio_ref', 'precio_bs']
-          df = df[df['codigo'].notna() & (df['codigo'] != 'Código') & (df['codigo'] != 'TOTAL')]
+          r = requests.get('https://docs.google.com/spreadsheets/d/1RlYJMsZ0uMpEhrOlUG2Y9EF88ZHzR3Sk/export?format=xlsx', timeout=30)
+          r.raise_for_status()
+          df = pd.read_excel(io.BytesIO(r.content), sheet_name='Lista de Precios', header=10)
+          df.columns = ['_','codigo','producto','cantidad','precio_ref','precio_bs']
+          df = df[df['codigo'].notna() & (df['codigo'] != 'Codigo') & (df['codigo'] != 'TOTAL')]
           df['precio_ref'] = pd.to_numeric(df['precio_ref'], errors='coerce').round(2)
+          precios = {str(x['codigo']).strip(): x['precio_ref'] for _,x in df.iterrows() if pd.notna(x['precio_ref'])}
+          json.dump(precios, open('precios.json','w'), indent=2)
+          print('OK', len(precios), 'productos')
+          "
 
-          precios = {str(r['codigo']).strip(): r['precio_ref'] for _, r in df.iterrows() if pd.notna(r['precio_ref'])}
-
-          with open('precios.json', 'w') as f:
-              json.dump(precios, f, indent=2)
-
-          print(f"✅ {len(precios)} productos guardados en precios.json")
-          EOF
-
-      - name: Subir precios.json al repositorio
+      - name: Subir precios.json
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
