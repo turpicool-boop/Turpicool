@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TURPICOOL — Servicios de Mantenimiento HVAC</title>
+<meta name="description" content="Servicios profesionales de instalación, mantenimiento y reparación de sistemas HVAC y electrodomésticos en Venezuela. Consulta sin compromiso.">
+<link rel="icon" type="image/png" href="images/imagen_001.png">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ice:#E8F4FD;--sky:#5BB8E8;--royal:#2A7EC8;--navy:#0D2B52;
+  --deep:#071830;--orange:#E8720C;--orange2:#FF8C1A;--gold:#C8922A;
+  --card:#0f2140;--border:rgba(91,184,232,0.18);
+  --text:#E8F4FD;--muted:rgba(232,244,253,0.55);--green:#25D366;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;overflow-x:hidden;}
+body{font-family:'Barlow',sans-serif;background:var(--deep);color:var(--text);min-height:100vh;overflow-x:hidden;width:100%;}
+.page-wrap{overflow-x:hidden;width:100%;position:relative;}
+
+/* ICE BAR */
+.ice-bar{height:3px;width:100%;background:linear-gradient(90deg,var(--navy),var(--sky),var(--royal),var(--orange),var(--navy));background-size:200%;animation:shimmer 4s linear infinite;}
+@keyframes shimmer{to{background-position:200% 0;}}
+
+/* TOPBAR */
+.topbar{background:rgba(7,24,48,0.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:66px;gap:12px;overflow:hidden;}
+.logo-wrap{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.logo-img{width:46px;height:46px;object-fit:contain;flex-shrink:0;}
+.logo-txt{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:4px;background:linear-gradient(135deg,var(--sky),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.logo-sub{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);display:block;margin-top:-3px;}
+.nav-links{display:flex;gap:6px;align-items:center;}
+.nav-btn{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:13px;letter-spacing:2px;text-transform:uppercase;background:none;border:none;color:rgba(232,244,253,0.75);cursor:pointer;padding:8px 14px;border-radius:8px;transition:all .2s;text-decoration:none;}
+.nav-btn:hover,.nav-btn.active{color:var(--sky);background:rgba(91,184,232,0.1);}
+
+/* HERO SERVICIOS */
+.hero-srv{background:linear-gradient(160deg,#0d2b52 0%,#071830 60%,#0a1020 100%);padding:80px 28px 70px;text-align:center;position:relative;overflow:hidden;}
+.hero-srv::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(91,184,232,0.08) 0%,transparent 70%);pointer-events:none;}
+.hero-srv::after{content:'🔧';position:absolute;font-size:300px;bottom:-100px;right:0;opacity:0.02;animation:float 6s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-20px);}}
+.hero-srv-icon{font-size:64px;margin-bottom:16px;display:block;position:relative;z-index:1;animation:pulse-icon 3s ease-in-out infinite;}
+@keyframes pulse-icon{0%,100%{transform:scale(1);}50%{transform:scale(1.05);}}
+.hero-srv h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(42px,7vw,80px);letter-spacing:5px;line-height:1;background:linear-gradient(180deg,#fff 0%,var(--sky) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:relative;z-index:1;}
+.hero-srv-sub{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(13px,2vw,18px);letter-spacing:5px;text-transform:uppercase;color:var(--orange);margin-top:10px;position:relative;z-index:1;}
+.hero-srv-desc{font-weight:300;font-size:16px;color:var(--muted);margin:22px auto 0;max-width:580px;line-height:1.8;position:relative;z-index:1;}
+.hero-trust{display:flex;gap:36px;justify-content:center;flex-wrap:wrap;margin-top:36px;position:relative;z-index:1;}
+.trust-item{text-align:center;}
+.trust-n{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:2px;color:var(--sky);}
+.trust-l{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);}
+
+/* SECTION TITLES */
+.section-wrap{padding:80px 28px;overflow:hidden;}
+.section-wrap.alt{background:linear-gradient(180deg,rgba(13,43,82,0.3) 0%,transparent 100%);}
+.section-inner{max-width:1100px;margin:0 auto;}
+.section-label{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:11px;letter-spacing:8px;text-transform:uppercase;color:var(--sky);margin-bottom:10px;display:block;}
+.section-h{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,56px);letter-spacing:3px;line-height:1;margin-bottom:20px;color:var(--ice);}
+.section-desc{font-weight:300;font-size:15px;color:var(--muted);max-width:600px;line-height:1.7;margin-bottom:44px;}
+
+/* SERVICES GRID */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px;}
+
+.srv-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:36px 28px;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s,border-color .3s;}
+.srv-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,0.4);border-color:rgba(91,184,232,0.35);}
+.srv-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--sky),var(--royal));border-radius:20px 20px 0 0;opacity:0;transition:opacity .3s;}
+.srv-card:hover::before{opacity:1;}
+
+.srv-icon{width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:20px;position:relative;}
+.srv-icon.hvac{background:linear-gradient(135deg,rgba(91,184,232,0.2),rgba(42,126,200,0.1));border:1px solid rgba(91,184,232,0.3);}
+.srv-icon.electric{background:linear-gradient(135deg,rgba(232,114,12,0.2),rgba(255,140,26,0.1));border:1px solid rgba(232,114,12,0.3);}
+.srv-icon.general{background:linear-gradient(135deg,rgba(200,146,42,0.2),rgba(200,146,42,0.1));border:1px solid rgba(200,146,42,0.3);}
+
+.srv-card h3{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px;letter-spacing:1px;text-transform:uppercase;color:var(--text);margin-bottom:10px;line-height:1.2;}
+.srv-card p{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:20px;}
+
+.srv-features{list-style:none;margin-bottom:24px;}
+.srv-features li{font-size:13px;color:rgba(232,244,253,0.7);padding:6px 0;border-bottom:1px solid rgba(91,184,232,0.08);display:flex;align-items:center;gap:10px;}
+.srv-features li::before{content:'✓';color:var(--sky);font-weight:700;font-size:14px;flex-shrink:0;}
+
+.srv-cta{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;background:rgba(91,184,232,0.1);border:1px solid rgba(91,184,232,0.3);color:var(--sky);padding:10px 20px;border-radius:12px;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px;}
+.srv-cta:hover{background:rgba(91,184,232,0.2);transform:translateY(-1px);}
+.srv-cta.wa{background:rgba(37,211,102,0.12);border-color:rgba(37,211,102,0.3);color:var(--green);}
+.srv-cta.wa:hover{background:rgba(37,211,102,0.2);}
+
+/* PROCESS SECTION */
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:step;}
+.process-step{text-align:center;padding:28px 16px;position:relative;}
+.process-step::before{counter-increment:step;content:counter(step);font-family:'Bebas Neue',sans-serif;font-size:48px;color:rgba(91,184,232,0.15);letter-spacing:2px;display:block;margin-bottom:8px;}
+.process-icon{font-size:32px;margin-bottom:12px;}
+.process-step h4{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--sky);margin-bottom:8px;}
+.process-step p{font-size:12px;color:var(--muted);line-height:1.6;}
+.process-connector{position:absolute;top:50%;right:-14px;width:28px;height:2px;background:linear-gradient(90deg,rgba(91,184,232,0.3),rgba(91,184,232,0.05));display:block;}
+.process-step:last-child .process-connector{display:none;}
+
+/* CTA BANNER */
+.cta-banner{background:linear-gradient(135deg,rgba(91,184,232,0.1),rgba(232,114,12,0.08));border:1px solid var(--border);border-radius:24px;padding:48px 40px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.cta-banner-text h3{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:3px;color:var(--ice);margin-bottom:8px;}
+.cta-banner-text p{font-size:14px;color:var(--muted);max-width:480px;line-height:1.6;}
+.cta-banner-btn{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:2px;text-transform:uppercase;background:var(--green);border:none;color:#fff;padding:16px 32px;border-radius:14px;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:10px;white-space:nowrap;flex-shrink:0;}
+.cta-banner-btn:hover{background:#1da851;transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,0.3);}
+.cta-banner-btn svg{width:22px;height:22px;}
+
+/* FAQ */
+.faq-list{max-width:720px;}
+.faq-item{border-bottom:1px solid var(--border);overflow:hidden;}
+.faq-q{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:1px;color:var(--text);padding:20px 0;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;background:none;border:none;width:100%;text-align:left;transition:color .2s;}
+.faq-q:hover{color:var(--sky);}
+.faq-q .arrow{font-size:18px;color:var(--sky);transition:transform .3s;flex-shrink:0;}
+.faq-item.open .faq-q .arrow{transform:rotate(180deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;}
+.faq-item.open .faq-a{max-height:200px;padding-bottom:20px;}
+.faq-a p{font-size:14px;color:var(--muted);line-height:1.7;}
+
+/* FOOTER */
+footer{text-align:center;padding:48px 28px 32px;border-top:1px solid var(--border);background:#040f20;overflow:hidden;}
+.footer-logo-wrap{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:8px;}
+.footer-logo-img{width:52px;height:auto;object-fit:contain;}
+.footer-logo-txt{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:6px;background:linear-gradient(135deg,var(--sky),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.footer-sub{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-top:2px;}
+.footer-links{display:flex;gap:24px;justify-content:center;margin-top:22px;flex-wrap:wrap;}
+.footer-link{font-size:13px;color:rgba(232,244,253,0.6);text-decoration:none;letter-spacing:1px;transition:color .2s;font-family:'Barlow',sans-serif;}
+.footer-link:hover{color:var(--sky);}
+.footer-copy{font-size:11px;color:rgba(232,244,253,0.35);margin-top:20px;letter-spacing:1px;}
+
+/* BACK TO TOP */
+.back-top{position:fixed;bottom:28px;right:28px;width:44px;height:44px;border-radius:50%;background:var(--royal);border:1px solid rgba(91,184,232,0.4);color:#fff;font-size:20px;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:400;transition:all .2s;box-shadow:0 4px 16px rgba(0,0,0,0.3);}
+.back-top.visible{display:flex;}
+.back-top:hover{background:var(--sky);transform:translateY(-2px);}
+
+/* WA FLOAT */
+.wa-float{position:fixed;bottom:28px;left:28px;width:56px;height:56px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;z-index:400;box-shadow:0 4px 20px rgba(37,211,102,0.4);transition:all .2s;text-decoration:none;animation:wa-pulse 2s infinite;}
+.wa-float:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,0.5);}
+.wa-float svg{width:28px;height:28px;}
+@keyframes wa-pulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.4);}50%{box-shadow:0 4px 20px rgba(37,211,102,0.2),0 0 0 12px rgba(37,211,102,0.08);}}
+
+/* RESPONSIVE */
+@media(max-width:800px){
+  .process-grid{grid-template-columns:1fr 1fr;gap:16px;}
+  .process-connector{display:none !important;}
+  .cta-banner{padding:32px 24px;text-align:center;justify-content:center;}
+  .cta-banner-text{text-align:center;}
+}
+@media(max-width:600px){
+  .topbar{padding:0 10px;}
+  .logo-sub{display:none;}
+  .logo-txt{font-size:20px;letter-spacing:2px;}
+  .nav-btn{font-size:11px;letter-spacing:1px;padding:6px 8px;}
+  .section-wrap{padding:60px 14px;}
+  .services-grid{grid-template-columns:1fr;}
+  .process-grid{grid-template-columns:1fr;max-width:280px;margin:0 auto;}
+  .hero-srv{padding:60px 14px 50px;}
+  .hero-srv h1{letter-spacing:3px;}
+  .hero-srv-sub{letter-spacing:3px;}
+  .cta-banner{border-radius:16px;padding:28px 18px;}
+}
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<div class="ice-bar"></div>
+<nav class="topbar">
+  <a class="logo-wrap" href="index.html">
+    <img class="logo-img" src="images/imagen_001.png" alt="Turpicool Logo">
+    <div><div class="logo-txt">TURPICOOL</div><span class="logo-sub">Repuestos HVAC &amp; Electrodomésticos</span></div>
+  </a>
+  <div class="nav-links">
+    <a class="nav-btn" href="index.html">Catálogo</a>
+    <a class="nav-btn active" href="servicios.html">Servicios</a>
+    <a class="nav-btn" href="index.html#contacto">Contacto</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero-srv">
+  <span class="hero-srv-icon">🛠️</span>
+  <h1>Nuestros Servicios</h1>
+  <p class="hero-srv-sub">Mantenimiento · Instalación · Reparación</p>
+  <p class="hero-srv-desc">Equipo técnico certificado para el cuidado integral de tus sistemas de climatización y electrodomésticos. Trabajamos con las mejores marcas y garantizamos cada servicio.</p>
+  <div class="hero-trust">
+    <div class="trust-item"><div class="trust-n">500+</div><div class="trust-l">Servicios realizados</div></div>
+    <div class="trust-item"><div class="trust-n">100%</div><div class="trust-l">Garantía</div></div>
+    <div class="trust-item"><div class="trust-n">24H</div><div class="trust-l">Respuesta rápida</div></div>
+  </div>
+</div>
+
+<!-- SERVICIOS HVAC -->
+<div class="section-wrap">
+  <div class="section-inner">
+    <span class="section-label">Lo que hacemos</span>
+    <h2 class="section-h">Servicios HVAC</h2>
+    <p class="section-desc">Soluciones profesionales para sistemas de aire acondicionado, calefacción, ventilación y refrigeración.</p>
+
+    <div class="services-grid">
+
+      <div class="srv-card">
+        <div class="srv-icon hvac">❄️</div>
+        <h3>Instalación de Mini Split</h3>
+        <p>Montaje profesional de unidades split y multi-split residenciales y comerciales. Incluye soporte, tuberías y puesta en marcha.</p>
+        <ul class="srv-features">
+          <li>Equipos de 9,000 a 60,000 BTU</li>
+          <li>Canalización de tuberías ocultas</li>
+          <li>Prueba de vacío y carga de gas</li>
+          <li>Garantía de instalación</li>
+        </ul>
+        <a class="srv-cta wa" href="https://wa.me/584166533220?text=Hola%20Turpicool%2C%20me%20interesa%20el%20servicio%20de%20instalaci%C3%B3n%20de%20mini%20split" target="_blank" rel="noopener noreferrer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Consultar
+        </a>
+      </div>
+
+      <div class="srv-card">
+        <div class="srv-icon hvac">🧹</div>
+        <h3>Mantenimiento Preventivo</h3>
+        <p>Limpieza profunda y revisión completa para alargar la vida útil de tu equipo y mantener la eficiencia energética.</p>
+        <ul class="srv-features">
+          <li>Limpieza de filtros y serpentines</li>
+          <li>Verificación de presiones de gas</li>
+          <li>Revisión eléctrica completa</li>
+          <li>Lubricación de componentes</li>
+        </ul>
+        <a class="srv-cta wa" href="https://wa.me/584166533220?text=Hola%20Turpicool%2C%20me%20interesa%20el%20servicio%20de%20mantenimiento%20preventivo" target="_blank" rel="noopener noreferrer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Consultar
+        </a>
+      </div>
+
+      <div class="srv-card">
+        <div class="srv-icon hvac">⚡</div>
+        <h3>Carga de Refrigerante</h3>
+        <p>Recarga profesional con equipo certificado. Trabajamos con R410A, R22, R134A y otros refrigerantes.</p>
+        <ul class="srv-features">
+          <li>Detección de fugas con nitrógeno</li>
+          <li>Vacío y deshidratación del sistema</li>
+          <li>Carga precisa con balanza digital</li>
+          <li>Gases R410A, R22, R134A</li>
+        </ul>
+        <a class="srv-cta wa" href="https://wa.me/584166533220?text=Hola%20Turpicool%2C%20me%20interesa%20el%20servicio%20de%20carga%20de%20refrigerante" target="_blank" rel="noopener noreferrer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Consultar
+        </a>
+      </div>
+
+      <div class="srv-card">
+        <div class="srv-icon hvac">🔌</div>
+        <h3>Reparación de Tarjetas</h3>
+        <p>Diagnóstico y reparación de tarjetas de control electrónicas para mini split y equipos de ventana.</p>
+        <ul class="srv-features">
+          <li>Diagnóstico con multímetro</li>
+          <li>Reparación de componentes SMD</li>
+          <li>Reprogramación de tarjetas</li>
+          <li>Reemplazo con tarjetas universales</li>
+        </ul>
+        <a class="srv-cta wa" href="https://wa.me/584166533220?text=Hola%20Turpicool%2C%20me%20interesa%20el%20servicio%20de%20reparaci%C3%B3n%20de%20tarjetas" target="_blank" rel="noopener noreferrer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Consultar
+        </a>
+      </div>
+
+      <div class="srv-card">
+        <div class="srv-icon hvac">🔍</div>
+        <h3>Diagnóstico General HVAC</h3>
+        <p>Evaluación completa del sistema para identificar fallas, ineficiencias o necesidad de reemplazo de componentes.</p>
+        <ul class="srv-features">
+          <li>Medición de temperaturas y presiones</li>
+          <li>Inspección de ductos y conexiones</li>
+          <li>Análisis de consumo eléctrico</li>
+          <li>Reporte detallado con presupuesto</li>
+        </ul>
+        <a class="srv-cta wa" href="https://wa.me/584166533220?text=Hola%20Turpicool%2C%20me%20interesa%20el%20servicio%20de%20diagn%C3%B3stico%20HVAC" target="_blank" rel="noopener noreferrer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Consultar
+        </a>
+      </div>
+
+      <div class="srv-card">
+        <div class="srv-icon electric">🔧</div>
+        <h3>Reparación de Electrodomésticos</h3>
+        <p>Servicio técnico para neveras, lavadoras, secadoras y otros electrodomésticos del hogar.</p>
+        <ul class="srv-features">
+          <li>Neveras y congeladores</li>
+          <li>Lavadoras y secadoras</li>
+          <li>Diagnóstico a domicilio</li>
+          <li>Repuestos originales disponibles</li>
+        </ul>
+        <a class="srv-cta wa" href="https://wa.me/584166533220?text=Hola%20Turpicool%2C%20me%20interesa%20el%20servicio%20de%20reparaci%C3%B3n%20de%20electrodom%C3%A9sticos" target="_blank" rel="noopener noreferrer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Consultar
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- CÓMO TRABAJAMOS -->
+<div class="section-wrap alt">
+  <div class="section-inner">
+    <span class="section-label">Proceso</span>
+    <h2 class="section-h">¿Cómo trabajamos?</h2>
+    <p class="section-desc">En 4 simples pasos coordinamos tu servicio técnico.</p>
+
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="process-icon">💬</div>
+        <h4>Contacto</h4>
+        <p>Escríbenos por WhatsApp describiendo tu problema o servicio que necesitas.</p>
+        <span class="process-connector"></span>
+      </div>
+      <div class="process-step">
+        <div class="process-icon">📋</div>
+        <h4>Diagnóstico</h4>
+        <p>Evaluamos la situación y te damos un presupuesto detallado sin compromiso.</p>
+        <span class="process-connector"></span>
+      </div>
+      <div class="process-step">
+        <div class="process-icon">🔧</div>
+        <h4>Ejecución</h4>
+        <p>Nuestro equipo técnico realiza el servicio con repuestos de calidad.</p>
+        <span class="process-connector"></span>
+      </div>
+      <div class="process-step">
+        <div class="process-icon">✅</div>
+        <h4>Garantía</h4>
+        <p>Entregamos el trabajo con garantía y seguimiento post-servicio.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="section-wrap">
+  <div class="section-inner">
+    <div class="cta-banner">
+      <div class="cta-banner-text">
+        <h3>¿Necesitas un servicio técnico?</h3>
+        <p>Contáctanos ahora y recibe un presupuesto sin compromiso. Respuesta en menos de 24 horas.</p>
+      </div>
+      <a class="cta-banner-btn" href="https://wa.me/584166533220?text=Hola%20Turpicool%2C%20necesito%20un%20servicio%20t%C3%A9cnico" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Escribir por WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="section-wrap alt">
+  <div class="section-inner">
+    <span class="section-label">Dudas frecuentes</span>
+    <h2 class="section-h">Preguntas Frecuentes</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Trabajan a domicilio? <span class="arrow">▾</span></button>
+        <div class="faq-a"><p>Sí, todos nuestros servicios de instalación, mantenimiento y reparación se realizan directamente en tu hogar o negocio. Coordinamos la visita por WhatsApp.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Cuánto cuesta un mantenimiento? <span class="arrow">▾</span></button>
+        <div class="faq-a"><p>El precio varía según el tipo de equipo y servicio requerido. Contáctanos por WhatsApp para recibir un presupuesto personalizado sin compromiso.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Qué marcas de equipos reparan? <span class="arrow">▾</span></button>
+        <div class="faq-a"><p>Trabajamos con todas las marcas: Samsung, LG, Carrier, York, Daikin, Gree, Mabe, Whirlpool, GE, Frigidaire y más. Si tu marca no está en la lista, consúltanos.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Dan garantía por el servicio? <span class="arrow">▾</span></button>
+        <div class="faq-a"><p>Sí, todos nuestros servicios incluyen garantía. El período varía según el tipo de trabajo realizado. Te informamos los detalles al momento de entregar el presupuesto.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Venden repuestos además de servicios? <span class="arrow">▾</span></button>
+        <div class="faq-a"><p>¡Por supuesto! Visita nuestro <a href="index.html" style="color:var(--sky);text-decoration:none;">catálogo de repuestos</a> con precios actualizados y envío por WhatsApp.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end page-wrap -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo-wrap"><img class="footer-logo-img" src="images/imagen_001.png" alt="Turpicool"><div class="footer-logo-txt">TURPICOOL</div></div>
+  <div class="footer-sub">Repuestos HVAC &amp; Electrodomésticos · Especialistas</div>
+  <div class="footer-links">
+    <a href="index.html" class="footer-link">Catálogo</a>
+    <a href="servicios.html" class="footer-link">Servicios</a>
+    <a href="index.html#contacto" class="footer-link">Contacto</a>
+    <a href="mailto:turpicool@gmail.com" class="footer-link">turpicool@gmail.com</a>
+  </div>
+  <p class="footer-copy">© 2026 Turpicool · Todos los derechos reservados</p>
+</footer>
+<div class="ice-bar"></div>
+
+<!-- BACK TO TOP -->
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">↑</button>
+
+<!-- WA FLOAT -->
+<a class="wa-float" href="https://wa.me/584166533220?text=Hola%20Turpicool%2C%20necesito%20un%20servicio%20t%C3%A9cnico" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+window.addEventListener('scroll',function(){
+  document.getElementById('backTop').classList.toggle('visible',window.scrollY>300);
+});
+</script>
+</body>
+</html>
