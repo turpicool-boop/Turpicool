@@ -739,7 +739,7 @@ function render(){
         (badges?'<div class="product-badges">'+badges+'</div>':'')+
       '</div>'+
       '<div class="card-body">'+
-        (p.sku?'<div class="card-sku">'+p.sku+(p.ref?' · '+p.ref:'')+'</div>':'')+
+        (p.sku?'<div class="card-sku">'+p.sku+'</div>':'')+
         (p.subcat?'<div class="card-subcat">'+p.subcat+'</div>':'')+
         '<div class="card-name">'+p.name+'</div>'+
         '<div class="card-footer">'+
@@ -776,7 +776,7 @@ function openDetail(id){
   if(p.badgeNew)badges+='<span class="badge-new">Nuevo</span>';
   if(p.badgeSale)badges+='<span class="badge-sale">Oferta</span>';
   document.getElementById('detailBadges').innerHTML=badges;
-  document.getElementById('detailSku').textContent=(p.sku||'')+(p.ref?' · '+p.ref:'');
+  document.getElementById('detailSku').textContent=(p.sku||'');
   document.getElementById('detailSubcat').textContent=p.subcat||'';
   document.getElementById('detailName').textContent=p.name;
   document.getElementById('detailDesc').textContent=p.desc||'';
