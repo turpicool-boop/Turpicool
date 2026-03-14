@@ -1,0 +1,33 @@
+name: Actualizar Precios Diario
+
+on:
+  schedule:
+    - cron: '0 12 * * *'   # Cada día a las 12:00 UTC (8:00 AM Venezuela)
+  workflow_dispatch:         # También permite correrlo manualmente desde GitHub
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: pip install pandas openpyxl requests
+
+      - name: Descargar Excel y generar precios.json
+        run: python excel_a_precios.py
+
+      - name: Subir precios.json al repositorio
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add precios.json
+          git diff --cached --quiet || git commit -m "Precios actualizados automáticamente $(date +'%Y-%m-%d')"
+          git push
