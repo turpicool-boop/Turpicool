@@ -272,6 +272,36 @@ footer{text-align:center;padding:48px 28px 32px;border-top:1px solid var(--borde
 .ice-bar{height:3px;width:100%;background:linear-gradient(90deg,var(--navy),var(--sky),var(--royal),var(--orange),var(--navy));background-size:200%;animation:shimmer 4s linear infinite;}
 @keyframes shimmer{to{background-position:200% 0;}}
 
+/* SERVICES BANNER */
+.srv-banner{padding:0 28px;overflow:hidden;}
+.srv-banner-inner{max-width:1100px;margin:48px auto;background:linear-gradient(135deg,rgba(13,43,82,0.9),rgba(15,33,64,0.95));border:1px solid var(--border);border-radius:24px;overflow:hidden;display:flex;align-items:stretch;position:relative;transition:border-color .3s,box-shadow .3s;}
+.srv-banner-inner:hover{border-color:rgba(91,184,232,0.35);box-shadow:0 16px 48px rgba(0,0,0,0.35);}
+.srv-banner-inner::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--sky),var(--orange));opacity:0;transition:opacity .3s;}
+.srv-banner-inner:hover::before{opacity:1;}
+.srv-banner-content{flex:1;padding:40px 36px;position:relative;z-index:1;}
+.srv-banner-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--orange);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.srv-banner-label::before{content:'';width:24px;height:2px;background:var(--orange);}
+.srv-banner-h{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,42px);letter-spacing:3px;line-height:1.1;color:var(--ice);margin-bottom:12px;}
+.srv-banner-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:20px;max-width:460px;}
+.srv-banner-features{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:24px;}
+.srv-banner-feat{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:rgba(232,244,253,0.7);display:flex;align-items:center;gap:6px;}
+.srv-banner-feat::before{content:'✓';color:var(--sky);font-weight:700;}
+.srv-banner-cta{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:2px;text-transform:uppercase;background:linear-gradient(135deg,var(--royal),var(--sky));border:none;color:#fff;padding:14px 28px;border-radius:12px;cursor:pointer;transition:all .25s;text-decoration:none;display:inline-flex;align-items:center;gap:10px;}
+.srv-banner-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(91,184,232,0.3);}
+.srv-banner-visual{width:280px;flex-shrink:0;background:linear-gradient(160deg,rgba(91,184,232,0.08),rgba(232,114,12,0.06));display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.srv-banner-visual::before{content:'';position:absolute;width:200px;height:200px;background:radial-gradient(circle,rgba(91,184,232,0.12),transparent 70%);border-radius:50%;}
+.srv-banner-icons{display:grid;grid-template-columns:1fr 1fr;gap:14px;position:relative;z-index:1;}
+.srv-b-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;border:1px solid rgba(91,184,232,0.2);background:rgba(7,24,48,0.6);backdrop-filter:blur(4px);transition:transform .3s,border-color .3s;}
+.srv-banner-inner:hover .srv-b-icon{border-color:rgba(91,184,232,0.4);}
+.srv-b-icon:nth-child(1){animation:float-icon 3s ease-in-out infinite;}
+.srv-b-icon:nth-child(2){animation:float-icon 3s ease-in-out infinite .5s;}
+.srv-b-icon:nth-child(3){animation:float-icon 3s ease-in-out infinite 1s;}
+.srv-b-icon:nth-child(4){animation:float-icon 3s ease-in-out infinite 1.5s;}
+@keyframes float-icon{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+
+@media(max-width:800px){.srv-banner-visual{display:none;}.srv-banner{padding:0 14px;}}
+@media(max-width:600px){.srv-banner-content{padding:28px 20px;}.srv-banner-features{gap:12px;}}
+
 /* BACK TO TOP */
 .back-top{position:fixed;bottom:28px;right:28px;width:44px;height:44px;border-radius:50%;background:var(--royal);border:1px solid rgba(91,184,232,0.4);color:#fff;font-size:20px;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:400;transition:all .2s;box-shadow:0 4px 16px rgba(0,0,0,0.3);}
 .back-top.visible{display:flex;}
@@ -292,6 +322,7 @@ footer{text-align:center;padding:48px 28px 32px;border-top:1px solid var(--borde
   </a>
   <div class="nav-links">
     <button class="nav-btn" onclick="window.scrollTo(0,0)">Catálogo</button>
+    <a class="nav-btn" href="servicios.html">Servicios</a>
     <button class="nav-btn" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">Contacto</button>
     <div class="topbar-socials">
       <a class="tsoc" href="https://www.tiktok.com/@turpicool" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg></a>
@@ -346,6 +377,32 @@ footer{text-align:center;padding:48px 28px 32px;border-top:1px solid var(--borde
   <div class="grid" id="grid"></div>
 </div>
 
+<!-- SERVICES BANNER -->
+<div class="srv-banner">
+  <a href="servicios.html" class="srv-banner-inner" style="text-decoration:none;color:inherit;">
+    <div class="srv-banner-content">
+      <div class="srv-banner-label">Nuevo</div>
+      <h2 class="srv-banner-h">Servicios Técnicos<br>Profesionales</h2>
+      <p class="srv-banner-desc">Instalación, mantenimiento y reparación de sistemas HVAC y electrodomésticos. Equipo certificado con garantía en cada servicio.</p>
+      <div class="srv-banner-features">
+        <span class="srv-banner-feat">Instalación</span>
+        <span class="srv-banner-feat">Mantenimiento</span>
+        <span class="srv-banner-feat">Reparación</span>
+        <span class="srv-banner-feat">A domicilio</span>
+      </div>
+      <span class="srv-banner-cta">Ver servicios →</span>
+    </div>
+    <div class="srv-banner-visual">
+      <div class="srv-banner-icons">
+        <div class="srv-b-icon">❄️</div>
+        <div class="srv-b-icon">🔧</div>
+        <div class="srv-b-icon">⚡</div>
+        <div class="srv-b-icon">🛠️</div>
+      </div>
+    </div>
+  </a>
+</div>
+
 <div class="contact-section" id="contacto">
   <div class="contact-inner">
     <span class="section-label">Comunícate con nosotros</span>
@@ -391,6 +448,7 @@ footer{text-align:center;padding:48px 28px 32px;border-top:1px solid var(--borde
   <div class="footer-links">
     <button class="footer-link" onclick="window.scrollTo({top:0,behavior:'smooth'})">Inicio</button>
     <button class="footer-link" onclick="window.scrollTo({top:0,behavior:'smooth'})">Catálogo</button>
+    <a href="servicios.html" class="footer-link">Servicios</a>
     <button class="footer-link" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">Contacto</button>
     <a href="mailto:turpicool@gmail.com" class="footer-link">turpicool@gmail.com</a>
   </div>
